@@ -80,7 +80,10 @@
             <td th:text="${transaction.typeService}"></td>
             <td th:text="${transaction.price}"></td>
             <td th:text="${transaction.area}"></td>
-            <td><a th:href="@{/home/detail/{id}(id = ${transaction.id})}" href="#" class="text-red">Chi tiết</a></td>
+            <td>
+                <a th:href="@{/home/detail/{id}(id = ${transaction.id})}" class="text-red">Chi tiết</a>
+                <a th:href="@{/home/update/{id}(id = ${transaction.id})}" class="text-red">Cập nhật</a>
+            </td>
         </tr>
         </tbody>
     </table>

@@ -19,6 +19,8 @@ public interface ITransactionService {
 
     void delete(Long id);
 
+    void update(Long id, TransactionRequest transactionRequest);
+
     List<TransactionResponse> findAllByTypeServiceOrNameCustomer(String searchTypeService, String searchNameCustomer);
 
     List<TransactionResponse> findAllByTypeServiceAndNameCustomer(String searchTypeService, String searchNameCustomer);

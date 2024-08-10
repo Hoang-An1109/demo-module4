@@ -61,6 +61,17 @@ public class TransactionService implements ITransactionService {
     }
 
     @Override
+    public void update(Long id, TransactionRequest transactionRequest) {
+        Optional<Transaction> transaction = transactionRepository.findById(id);
+        if (transaction.isPresent()) {
+            Transaction updateTransaction = transaction.get();
+            BeanUtils.copyProperties(transactionRequest, updateTransaction);
+            transactionRepository.save(updateTransaction);
+        }
+
+    }
+
+    @Override
     public List<TransactionResponse> findAllByTypeServiceOrNameCustomer(String searchTypeService, String searchNameCustomer) {
         List<Transaction> transactions = transactionRepository.findAllByTypeServiceOrNameCustomer(searchTypeService, searchNameCustomer);
         List<TransactionResponse> response = new ArrayList<>();

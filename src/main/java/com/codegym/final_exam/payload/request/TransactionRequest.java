@@ -21,6 +21,7 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TransactionRequest {
+    Long id;
 
     @NotNull(message = "Mã giao dịch không được để trống")
     @Pattern(regexp = "^MGD-\\d{4}$", message = "Mã giao dịch phải đúng định dạng (MGD-XXXX), trong đó XXXX là các chữ số (0-9)")

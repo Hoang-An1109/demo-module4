@@ -91,4 +91,24 @@ public class TransactionController {
         }
         return "/index";
     }
+
+    @GetMapping("/update/{id}")
+    public String getUpdateTransactionPage(Model model, @PathVariable Long id) {
+        Transaction transaction = transactionService.findById(id);
+        model.addAttribute("transaction", transaction);
+        return "/update";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateTransaction(@Valid @ModelAttribute("transaction") TransactionRequest transactionRequest,
+                                    BindingResult bindingResult,
+                                    @PathVariable Long id,
+                                    RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            return "/update";
+        }
+        transactionService.update(id, transactionRequest);
+        redirectAttributes.addFlashAttribute("message", "Giao dịch đã cập nhật thành công.");
+        return "redirect:/home";
+    }
 }
